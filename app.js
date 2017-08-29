@@ -1,6 +1,5 @@
 import {viewEngineConfig} from "./configs/view-engine";
 import {_} from "./configs/constants";
-
 let express = require('express');
 let path = require('path');
 let favicon = require('serve-favicon');
@@ -13,8 +12,6 @@ let users = require('./routes/users');
 let app = express();
 
 export class App {
-
-
     /**
      * Run configuration methods on the app instance.
      */
@@ -36,7 +33,9 @@ export class App {
         this.app._ = _;
     }
 
-    // Configure app middleware.
+    /**
+     * Configure app middleware.
+     */
     middleware() {
         this.app.use(logger("dev"));
         this.app.use(function (req, res, next) {
@@ -50,12 +49,6 @@ export class App {
         this.app.use(bodyParser.urlencoded({extended: false}));
         this.app.use(cookieParser()); // cookie management
         this.app.use(favicon(__dirname + '/public/corvel.png')); // giving favicon
-        // this.app.use(sassMiddleware({
-        //     src: __dirname + "/public",
-        //     dest: __dirname + "/public",
-        //     indentedSyntax: false, // true = .sass and false = .scss
-        //     sourceMap: true
-        // }));
         this.app.use(sassMiddleware({
             /* Options */
             src: path.join(__dirname, 'public/stylesheets/scss'),
@@ -95,8 +88,6 @@ export class App {
         // view engine setup
         this.app.set('views', viewEngineConfig[viewEngineConfig.defaultView].viewPath);
         this.app.set('view engine', viewEngineConfig[viewEngineConfig.defaultView].viewEngine);
-        this.app.engine(viewEngineConfig[viewEngineConfig.defaultView].viewEngine,
-            viewEngineConfig[viewEngineConfig.defaultView].viewResolve);
     }
 
     /**
@@ -106,7 +97,9 @@ export class App {
     setUpModels() {
     }
 
-    // Configure API endpoints.
+    /**
+     * Configure API endpoints.
+     */
     routes() {
         this.app.use('/', index);
         this.app.use('/users', users);
