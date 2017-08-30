@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import http from 'http';
 import assert from 'assert';
-import '../bin/www';
+import '../src/bin/www';
 
 describe('Example Node Server', () => {
     it('should return 200', done => {
