@@ -5,7 +5,7 @@
  * Module dependencies.
  */
 
-let app = require('./app');
+let app = require('../app');
 let debug = require('debug')('nils:server');
 let http = require('http');
 

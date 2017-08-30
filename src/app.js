@@ -1,5 +1,5 @@
-import {viewEngineConfig} from "../configs/view-engine";
-import {_} from "../configs/constants";
+import {viewEngineConfig} from "./configs/view-engine";
+import {_} from "./configs/constants";
 
 let express = require('express');
 let path = require('path');
@@ -8,8 +8,8 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let sassMiddleware = require('node-sass-middleware');
-let index = require('../routes/index');
-let users = require('../routes/users');
+let index = require('./routes/index');
+let users = require('./routes/users');
 let app = express();
 
 export class App {
@@ -49,17 +49,17 @@ export class App {
         // this.app.use(methodOverride()); // support for put and delete
         this.app.use(bodyParser.urlencoded({extended: false}));
         this.app.use(cookieParser()); // cookie management
-        this.app.use(favicon(__dirname + '/../../public/corvel.png')); // giving favicon
+        this.app.use(favicon(__dirname + '/../public/corvel.png')); // giving favicon
         this.app.use(sassMiddleware({
             /* Options */
-            src: path.join(__dirname, '/../../public/stylesheets/scss'),
-            dest: path.join(__dirname, '/../../public/stylesheets'),
+            src: path.join(__dirname, '/../public/stylesheets/scss'),
+            dest: path.join(__dirname, '/../public/stylesheets'),
             debug: true,
             indentedSyntax: false,
             outputStyle: 'compressed',
             prefix: '/public/stylesheets'
         }));
-        this.app.use('/public', express.static(path.join(__dirname, '/../../public')))
+        this.app.use('/public', express.static(path.join(__dirname, '/../public')))
     }
 
     interceptors() {
